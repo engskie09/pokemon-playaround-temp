@@ -1,0 +1,31 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "exportAsImage.useCurrentScale": true,
+    "fileStates": {
+        "First Asset pack.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "D:/programming/others/pokemon-playaround-temp/src/asset/tiled",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 12,
+    "map.tileWidth": 12,
+    "openFiles": [
+    ],
+    "project": "testing.tiled-project",
+    "recentFiles": [
+        "First Asset pack.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 12,
+        "width": 12
+    }
+}
