@@ -2,20 +2,14 @@ import { useEffect } from "react"
 
 import houseKo from '../asset/image/houseko.png';
 import playerDown from '../asset/image/playerDown.png';
+import { IKeys } from "./interface";
+import { initCanvas ,initListeners } from "./utils";
+import { Sprite } from "./model";
 
 export const Map = () => {
     useEffect(() => {
-        const canvas = document.querySelector('canvas');
-        const c = canvas?.getContext('2d'); 
-
-        if (!canvas || !c)
-            return ;
         
-        canvas.width = 1024;
-        canvas.height = 576;
-
-        c.fillStyle = 'white';
-        c.fillRect(0, 0, canvas?.width, canvas?.height);
+        const { canvas, context } = initCanvas();
 
         const mapImage = new Image();
         mapImage.src = houseKo;
@@ -29,31 +23,35 @@ export const Map = () => {
             image: HTMLImageElement;
         }
 
-        class Sprite {
-            position: { x: number, y: number };
-            velocity: number = 0;
-            image: HTMLImageElement;
+        // class Sprite {
+        //     position: { x: number, y: number };
+        //     velocity: number = 0;
+        //     image: HTMLImageElement;
     
-            constructor({position, velocity, image}: ISprite){
-                this.position = position;
-                this.image = image;
-            }
+        //     constructor({position, velocity, image}: ISprite){
+        //         this.position = position;
+        //         this.image = image;
+        //     }
 
-            draw() {
-                c?.drawImage(this.image, this.position.x, this.position.y);
-            }
-        }
+        //     draw() {
+        //         context?.drawImage(this.image, this.position.x, this.position.y);
+        //     }
+        // }
+
+        if (!canvas || !context)
+            return;
 
         const background = new Sprite({
+            context: context,
             position: {
                 x: 0,
                 y: 0
             },
             velocity: 0,
-            image: mapImage
+            image: mapImage,
         });
 
-        const keys = {
+        const keys: IKeys = {
             w: {
                 pressed: false
             },
@@ -67,6 +65,9 @@ export const Map = () => {
                 pressed: false
             },
         }
+        
+        
+        initListeners(keys);
 
         const animate = () => {
             window.requestAnimationFrame(animate);
@@ -74,7 +75,7 @@ export const Map = () => {
             // c.drawImage(mapImage, 0, 0);
             background.draw();
 
-            c.drawImage(
+            context.drawImage(
                 playerImage,
                 // crop positioning
                 0,
@@ -93,66 +94,67 @@ export const Map = () => {
                 // tODO
                 // https://www.youtube.com/watch?v=yP5DKzriqXA 2:00:00
 
-            if (keys.w.pressed && lastKey === 'w') {
+
+                // console.log('lastKey: ', lastKey)
+
+            if (keys.w.pressed) {
                 background.position.y += 3
             }
             
-            if (keys.a.pressed && lastKey === 'a') {
+            if (keys.a.pressed) {
                 background.position.x += 3;
             }
             
-            if (keys.s.pressed && lastKey === 's') {
+            if (keys.s.pressed) {
                 background.position.y -= 3;
             }
 
-            if (keys.d.pressed && lastKey === 'd') {
+            if (keys.d.pressed) {
                 background.position.x -= 3;
             }
         }
 
         animate();
-        
-        let lastKey = '';
 
-        window.addEventListener('keydown', (e) => {
-            console.log('keydown', e.key);
-            switch (e.key) {
-                case 'w':
-                    keys.w.pressed = true;
-                    lastKey = 'w';
-                    break;
-                case 'a':
-                    keys.a.pressed = true;
-                    lastKey = 'a';
-                    break;
-                case 's':
-                    keys.s.pressed = true;
-                    lastKey = 's';
-                    break;
-                case 'd':
-                    keys.d.pressed = true;
-                    lastKey = 'd';
-                    break;
-            }
-        });
+        // window.addEventListener('keydown', (e) => {
+        //     console.log('keydown', e.key);
+        //     switch (e.key) {
+        //         case 'w':
+        //             keys.w.pressed = true;
+        //             lastKey = 'w';
+        //             break;
+        //         case 'a':
+        //             keys.a.pressed = true;
+        //             lastKey = 'a';
+        //             break;
+        //         case 's':
+        //             keys.s.pressed = true;
+        //             lastKey = 's';
+        //             break;
+        //         case 'd':
+        //             keys.d.pressed = true;
+        //             lastKey = 'd';
+        //             break;
+        //     }
+        // });
 
-        window.addEventListener('keyup', (e) => {
-            console.log('keyup', e.key);
-            switch (e.key) {
-                case 'w':
-                    keys.w.pressed = false;
-                    break;
-                case 'a':
-                    keys.a.pressed = false;
-                    break;
-                case 's':
-                    keys.s.pressed = false;
-                    break;
-                case 'd':
-                    keys.d.pressed = false;
-                    break;
-            }
-        });
+        // window.addEventListener('keyup', (e) => {
+        //     console.log('keyup', e.key);
+        //     switch (e.key) {
+        //         case 'w':
+        //             keys.w.pressed = false;
+        //             break;
+        //         case 'a':
+        //             keys.a.pressed = false;
+        //             break;
+        //         case 's':
+        //             keys.s.pressed = false;
+        //             break;
+        //         case 'd':
+        //             keys.d.pressed = false;
+        //             break;
+        //     }
+        // });
     }, []);
 
     return <div style={{backgroundColor: 'black'}}>

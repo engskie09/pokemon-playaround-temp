@@ -3,14 +3,26 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "houseko.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "exportAsImage.useCurrentScale": true,
     "fileStates": {
         "First Asset pack.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "collision.tsx": {
+            "scaleInDock": 1
+        },
+        "houseko.tmx": {
+            "scale": 3.1218055555555555,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 54.45566579169818,
+                "y": 88.41037505005116
+            }
         }
     },
     "last.imagePath": "D:/programming/others/pokemon-playaround-temp/src/asset/tiled",
@@ -18,9 +30,11 @@
     "map.tileHeight": 12,
     "map.tileWidth": 12,
     "openFiles": [
+        "houseko.tmx"
     ],
     "project": "testing.tiled-project",
     "recentFiles": [
+        "houseko.tmx",
         "First Asset pack.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
